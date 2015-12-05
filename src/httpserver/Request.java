@@ -48,6 +48,8 @@ public class Request {
   public final byte[] data;
 
   private void parseCookies(String val) {
+    if (val == null)
+      return;
     int cur = 0;
     int mid = 0;
     for (int i = 0; i < val.length(); ++i) {
@@ -98,7 +100,7 @@ public class Request {
       }
         
     }
-    
+    parseCookies(headers.get("Cookie"));
   }
   
   @Override
