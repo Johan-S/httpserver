@@ -32,18 +32,18 @@ import java.net.SocketException;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
 import static java.lang.String.format;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
-/**
- *
- * @author Johan Strååt
- */
 public class Server {
 
   private static final Logger log = Logger.getLogger(Server.class.getName());
 
   private ServerSocket server;
 
+  private ExecutorService pool;
+  
   private Server(int port, boolean ssl) throws IOException {
     server = ssl ? (SSLServerSocket) SSLServerSocketFactory.getDefault().createServerSocket(port)
             : ServerSocketFactory.getDefault().createServerSocket(port);
@@ -52,9 +52,10 @@ public class Server {
 
   private volatile boolean running = false;
   private ServerLoop loop;
-
+  
   public void start(RequestHandler rh) {
     log.info(String.format("Starting server at '%s'.", server.getInetAddress().toString()));
+    pool = Executors.newFixedThreadPool(1000, run -> new Thread(null, run, "", 1 << 12));
     loop = new ServerLoop(rh);
     running = true;
     loop.start();
@@ -64,6 +65,8 @@ public class Server {
     try {
       if (running) {
         log.info(String.format("Stopping server at '%s'.", server.getInetAddress().toString()));
+        pool.shutdown();
+        pool = null;
         running = false;
         server.close();
       }
@@ -102,7 +105,7 @@ public class Server {
     public void run() {
       while (running) {
         try {
-          new RequestThread(server.accept(), rh).start();
+          pool.submit(new RequestThread(server.accept(), rh));
         } catch (IOException ex) {
           if (!ex.getMessage().equals("socket closed")) {
             log.severe(ex.toString());
