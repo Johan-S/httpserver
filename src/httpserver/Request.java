@@ -34,10 +34,7 @@ import util.HttpHeaders;
 import util.io.CappedInputStream;
 import util.io.Streams;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public class Request {
   public final int MAX_HEADER_SIZE = 1 << 13;
 

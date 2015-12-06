@@ -23,10 +23,7 @@
  */
 package httpserver;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public class Http {
     public enum Method {
         GET, POST, PUT, DELETE;

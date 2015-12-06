@@ -32,10 +32,7 @@ import java.util.*;
 import java.util.logging.Logger;
 import util.Strings;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public class Responses {
 
   private static final Logger log = Logger.getLogger(Responses.class.getName());

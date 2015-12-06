@@ -23,10 +23,7 @@
  */
 package httpserver.sql;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public class SQLError extends Error {
   SQLError(Exception e) {
     super(e);

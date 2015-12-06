@@ -30,10 +30,7 @@ import java.util.regex.Pattern;
 import static httpserver.Http.Method;
 import java.util.regex.Matcher;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public interface RequestHandler {
 
   public Response handle(Request req) throws SocketException;

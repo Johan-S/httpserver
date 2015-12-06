@@ -25,10 +25,7 @@ package httpserver.sql;
 
 import java.sql.*;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public abstract class ConnectionPool {
   
   public static void setUrl(String url) {

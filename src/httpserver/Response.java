@@ -28,10 +28,7 @@ import static httpserver.Http.*;
 import java.util.*;
 import util.Strings;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public class Response {
 
   public Response() {

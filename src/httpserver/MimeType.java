@@ -27,10 +27,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Johan Strååt
- */
+
 public enum MimeType {
     JPG("image/jpg", "jpg"),
     PNG("image/png", "png"),

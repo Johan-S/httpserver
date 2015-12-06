@@ -14,10 +14,7 @@ import java.util.Map;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author Johan Strååt
- */
+
 public class JsonBuilder {
     
     public static String json(Object o) {
