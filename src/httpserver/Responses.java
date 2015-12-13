@@ -212,17 +212,17 @@ public class Responses {
     }
   }
 
-  static class RawResponse extends Response {
+  public static class RawResponse extends Response {
 
     byte[] data;
 
-    RawResponse(byte[] data, String type) {
+    public RawResponse(byte[] data, String type) {
       this.data = data;
       headers.add("Content-Type: " + type);
       headers.add("Content-Length: " + data.length);
     }
 
-    RawResponse(String data, String type) {
+    public RawResponse(String data, String type) {
       this(data.getBytes(), type);
     }
 

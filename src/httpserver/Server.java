@@ -55,7 +55,7 @@ public class Server {
   
   public void start(RequestHandler rh) {
     log.info(String.format("Starting server at '%s'.", server.getInetAddress().toString()));
-    pool = Executors.newFixedThreadPool(1000, run -> new Thread(null, run, "", 1 << 12));
+    pool = Executors.newFixedThreadPool(100, run -> new Thread(null, run, "", 1 << 12));
     loop = new ServerLoop(rh);
     running = true;
     loop.start();
