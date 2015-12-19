@@ -33,8 +33,10 @@ public abstract class ConnectionPool {
   }
   
   private static String url;
+  private static String username;
+  private static String password;
   private static Connection get() throws SQLException {
-    return DriverManager.getConnection(url);
+    return DriverManager.getConnection(url, username, password);
   }
   public static void execute(String sql) {
       try(Connection conn = ConnectionPool.get();
@@ -53,6 +55,20 @@ public abstract class ConnectionPool {
         throw new SQLError(e);
       }
   }
+
+    /**
+     * @param aUsername the username to set
+     */
+    public static void setUsername(String aUsername) {
+        username = aUsername;
+    }
+
+    /**
+     * @param aPassword the password to set
+     */
+    public static void setPassword(String aPassword) {
+        password = aPassword;
+    }
   public static interface Callback<T> {
     public T call(ResultSet res) throws SQLException;
   }
